@@ -15,10 +15,10 @@ class _NavbarState extends State<Navbar> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    Homepage(),        // HomeScreen widget
-    Searchscreen(),    // SearchScreen widget
-    Reelsscreen(),     // ReelsScreen widget
-    Profilepage(),     // ProfilePage widget
+    Homepage(),
+    Searchscreen(),
+    Reelsscreen(),
+    Profilepage(),
   ];
 
   void _onItemTapped(int index) {
@@ -30,33 +30,34 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _screens,
+      body: _screens[_selectedIndex],  // Display the selected screen
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            buildNavBarItem(icon: Icons.home, index: 0),
+            buildNavBarItem(icon: Icons.search, index: 1),
+            buildNavBarItem(icon: Icons.video_collection, index: 2),
+            buildNavBarItem(icon: Icons.person, index: 3),
+          ],
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.video_collection),
-            label: 'Reels',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
+    );
+  }
+
+  Widget buildNavBarItem({required IconData icon, required int index}) {
+    return GestureDetector(
+      onTap: () {
+        _onItemTapped(index);
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 18.0),
+        child: Icon(
+          icon,
+          size: 30,  // Set the size of the icons
+          color: _selectedIndex == index ? Colors.green : Colors.white70,
+        ),
       ),
     );
   }

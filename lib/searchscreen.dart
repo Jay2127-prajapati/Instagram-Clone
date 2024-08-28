@@ -11,7 +11,6 @@ class Searchscreen extends StatelessWidget {
       body: Center(
         child: Text('Welcome to the Search Screen'),
       ),
-      bottomNavigationBar: Navbar(),
     );
   }
 }

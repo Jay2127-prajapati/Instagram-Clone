@@ -11,7 +11,6 @@ class Reelsscreen extends StatelessWidget {
       body: Center(
         child: Text('Welcome to the Reels Screen'),
       ),
-      bottomNavigationBar: Navbar(),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:insta/homescreen.dart';
 import 'dart:async';
+import 'package:insta/nav%20bar/Bottom_nav_bar.dart'; 
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,12 +11,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Using Future.delayed instead of Timer
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Homepage()), // Replace with your next screen
+          MaterialPageRoute(builder: (context) => const Navbar()), 
         );
       }
     });
@@ -26,32 +25,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          Align(
-            alignment: Alignment.topCenter,
-            child: Center(
-              child: Container(
-                width: 100,
-                height: 100,
-                child: Image.asset(
-                  'assets/images/instagram.png',
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-          ),
-          const Center(
-            child: Text(
-              "",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
+      body: Center(
+        child: Image.asset(
+          'assets/images/instagram.png',
+          width: 100,
+          height: 100,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }

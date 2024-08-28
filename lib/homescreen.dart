@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insta/component/chatscreen.dart';
 import 'package:insta/component/post_display.dart';
-import 'package:insta/nav%20bar/Bottom_nav_bar.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -9,21 +8,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  static final List<Widget> _widgetOptions = <Widget>[
-    PostScreen(),
-    const Text('Search Page'),
-    const Text('Reels Page'),
-    const Text('Profile Page'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     print('Building Homepage');
@@ -59,22 +43,11 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
           ),
+          // Additional body content can be added here
           Expanded(
-            child: Center(
-              child: _widgetOptions.elementAt(_selectedIndex),
-            ),
+            child: PostScreen(), // Displaying posts
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          BottomNavigationBarItem(icon: Icon(Icons.label), label: 'Reels'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
       ),
     );
   }
